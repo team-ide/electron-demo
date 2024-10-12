@@ -29,20 +29,23 @@ files:
 
 asarUnpack: # 不需要打包到asar中的文件，也就是有改动的代码
   - ./xxx
-# win:
-#   executableName: 测试程序
-#   icon: src/assets/favicon.ico # 程序图标
-#   target:
-#     - target: nsis # 利用nsis制作安装程序
-#       arch:
-#         - x64 # 64位
-#         #- ia32 # 32位
+win:
+  executableName: 测试程序
+  icon: src/assets/favicon.ico # 程序图标
+  artifactName: ${name}-${version}-${arch}.${ext}
+  target:
+    - target: nsis # 利用nsis制作安装程序
+      arch:
+        - x64 # 64位
+    - target: zip
+      arch:
+        - x64 # 64位
         
-#     #- target: portable # 单文件免安装版
-#     #  arch:
-#         - x64 # 64位
-#     #    - ia32 # 32位
-#   # requestedExecutionLevel: highestAvailable # 获取管理员权限
+    #- target: portable # 单文件免安装版
+    #  arch:
+       # - x64 # 64位
+       # - ia32 # 32位
+  # requestedExecutionLevel: highestAvailable # 获取管理员权限
 nsis:
   oneClick: false # 是否一键安装
   allowElevation: true # 允许请求提升。若为false，则用户必须使用提升的权限重新启动安装程序。
@@ -50,7 +53,7 @@ nsis:
   createDesktopShortcut: true # 卸载时图标
   createStartMenuShortcut: true # 是否创建开始菜单图标
   runAfterFinish: false # 是否安装完成后运行
-  artifactName: ${name}-${version}-${arch}-setup.${ext}
+  artifactName: ${name}-${version}-${arch}.${ext}
   installerIcon: src/assets/favicon.ico # 安装时图标(所有路径均相对根目录)
   # uninstallerIcon: # 卸载时图标
   # installerHeaderIcon: # 安装时头部图标
